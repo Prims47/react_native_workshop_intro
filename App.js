@@ -12,6 +12,8 @@ import {
   View
 } from 'react-native';
 
+import Texto from './text';
+
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' +
     'Cmd+D or shake for dev menu',
@@ -32,6 +34,7 @@ export default class App extends Component<{}> {
         <Text style={styles.instructions}>
           {instructions}
         </Text>
+        <Texto />
       </View>
     );
   }
