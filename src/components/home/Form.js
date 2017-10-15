@@ -6,20 +6,19 @@ import {
   TextInput,
 } from 'react-native';
 
-export default class Form extends Component<{}> {
-    constructor(props) {
-        super(props);
-        this.state = { placeholder: 'Où ?' };
-    }
+import Input from '../form/Input';
 
+export default class Form extends Component<{}> {
     render() {
         return (
-            <TextInput
-                style={styles.input}
-                onChangeText={(text) => this.setState({text})}
-                value={this.state.text}
-                placeholder={this.state.placeholder}
-            />
+            <View style={styles.container}>
+                <Input placeholder="Où ?"/>
+                <Input placeholder="Prix max"/>
+                <Input placeholder="Surface min"/>
+                <View style={styles.warrantyWrapper}>
+                    <Text style={styles.warranty}>Pentaheus vous garantie les meilleurs prix</Text>
+                </View>
+            </View>
         );
     }
 }
@@ -31,5 +30,13 @@ const styles = StyleSheet.create({
         borderBottomWidth: 1,
         height: 47,
         paddingLeft: 11.5,
+    },
+    warrantyWrapper: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginTop: 16,
+    },
+    warranty: {
+        color: '#D8D7DC',
     }
 });
