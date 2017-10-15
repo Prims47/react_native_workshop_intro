@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
     form: {
         backgroundColor: "#FFF",
         width: 315,
-        height: 231,
+        height: 224,
         marginTop: 93,
         marginLeft: 29,
     }
