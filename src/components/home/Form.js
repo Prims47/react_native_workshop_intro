@@ -9,9 +9,20 @@ import {
 import Input from '../form/Input';
 import Btn from '../form/Btn';
 
+import axios from 'axios';
+
+import { API_URL } from '../../Constant';
+
 export default class Form extends Component<{}> {
     search() {
-        console.log("OK OK")
+        let url = `${API_URL}paris`
+        axios.get(url)
+          .then(function (response) {
+            console.log(response.data.response);
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
     }
 
     render() {
