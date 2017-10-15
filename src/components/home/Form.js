@@ -8,13 +8,8 @@ import {
 } from 'react-native';
 
 import Input from '../form/Input';
-import Btn from '../form/Btn';
 
 export default class Form extends Component<{}> {
-    search() {
-        console.log("OK OK")
-    }
-
     render() {
         let color = (Platform.OS === 'ios') ? "#FFF" : "#FF2E2E"
 
