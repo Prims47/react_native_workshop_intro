@@ -27,6 +27,10 @@ export default class Form extends Component<{}> {
     }
 
 export default class Form extends Component<{}> {
+    search() {
+        console.log("OK OK")
+    }
+
     render() {
         let color = (Platform.OS === 'ios') ? "#FFF" : "#FF2E2E"
 
