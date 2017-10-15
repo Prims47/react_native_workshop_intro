@@ -53,7 +53,7 @@ export default class Form extends Component<{}> {
           })
           .catch(function (error) {
             console.log("ERROR:", error);
-          });
+        });
     }
 
     changeWhere(whereValue) {
