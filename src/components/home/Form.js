@@ -7,8 +7,13 @@ import {
 } from 'react-native';
 
 import Input from '../form/Input';
+import Btn from '../form/Btn';
 
 export default class Form extends Component<{}> {
+    search() {
+        console.log("OK OK")
+    }
+
     render() {
         return (
             <View style={styles.container}>
@@ -17,6 +22,10 @@ export default class Form extends Component<{}> {
                 <Input placeholder="Surface min"/>
                 <View style={styles.warrantyWrapper}>
                     <Text style={styles.warranty}>Pentaheus vous garantie les meilleurs prix</Text>
+                </View>
+                <View style={styles.buttonWrapper}>
+                <Btn title="RECHERCHER" accessibilityLabel="RECHERCHER" search={this.search}
+                    color="#FFF"/>
                 </View>
             </View>
         );
@@ -38,5 +47,10 @@ const styles = StyleSheet.create({
     },
     warranty: {
         color: '#D8D7DC',
+    },
+    buttonWrapper: {
+        backgroundColor: '#FF2E2E',
+        height: 44,
+        marginTop: 13,
     }
 });
