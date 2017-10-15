@@ -7,27 +7,18 @@ import {
 export default class Input extends Component<{}> {
     constructor(props) {
         super(props);
-
-        this.state = { placeholder: this.props.placeholder};
-
-        this.filter = this.filter.bind(this);
+        this.state = { placeholder: this.props.placeholder };
     }
 
     render() {
         return (
             <TextInput
                 style={styles.input}
-                onChangeText={(value) => this.filter(value)}
-                value={this.state.value}
+                onChangeText={(text) => this.setState({text})}
+                value={this.state.text}
                 placeholder={this.state.placeholder}
-                underlineColorAndroid='rgba(0,0,0,0)'
             />
         );
-    }
-
-    filter(value) {
-        this.setState({value});
-        this.props.searchInput(value);
     }
 }
 

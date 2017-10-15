@@ -8,37 +8,8 @@ import {
 } from 'react-native';
 
 import Input from '../form/Input';
-import Btn from '../form/Btn';
-
-import axios from 'axios';
-
-import { API_URL } from '../../Constant';
 
 export default class Form extends Component<{}> {
-    constructor(props) {
-        super(props);
-        this.state = { whereValue: "", priceValue: "", surfMin: "" };
-
-        this.search = this.search.bind(this);
-    }
-
-    search() {
-        console.log("Log:", this.state)
-        let url = `${API_URL}paris`
-        // axios.get(url)
-        //   .then(function (response) {
-        //     console.log(response.data.response);
-        //   })
-        //   .catch(function (error) {
-        //     console.log("ERROR:", error);
-        //   });
-    }
-
-    changeWhere(whereValue) {
-        console.log("changeWhere", whereValue);
-        this.setState({whereValue})
-    }
-
     render() {
         let color = (Platform.OS === 'ios') ? "#FFF" : "#FF2E2E"
 
@@ -76,9 +47,5 @@ const styles = StyleSheet.create({
     },
     warranty: {
         color: '#D8D7DC',
-    },
-    buttonWrapper: {
-        backgroundColor: '#FF2E2E',
-        marginTop: 13,
-    },
+    }
 });
