@@ -10,6 +10,7 @@ import {
 import { TabNavigator } from 'react-navigation';
 
 import ListScreen from './ListScreen';
+import MapScreen from './MapScreen';
 
 export default class List extends Component<{}> {
     static navigationOptions = {
@@ -32,7 +33,8 @@ export default class List extends Component<{}> {
 
     render() {
         const TabRouter = TabNavigator({
-            ListScreen: { screen: ListScreen }
+            ListScreen: { screen: ListScreen },
+            MapScreen: { screen: MapScreen }
         }, {
             initialRouteName: 'ListScreen',
             animationEnabled: true,
