@@ -15,28 +15,38 @@ import axios from 'axios';
 import { API_URL } from '../../Constant';
 
 export default class Form extends Component<{}> {
-    search() {
-        let url = `${API_URL}paris`
-        axios.get(url)
-          .then(function (response) {
-            console.log(response.data.response);
-          })
-          .catch(function (error) {
-            console.log(error);
-          });
+    constructor(props) {
+        super(props);
+        this.state = { whereValue: "", priceValue: "", surfMin: "" };
+
+        this.search = this.search.bind(this);
     }
 
-export default class Form extends Component<{}> {
     search() {
-        console.log("OK OK")
+        console.log("Log:", this.state)
+        let url = `${API_URL}paris`
+        // axios.get(url)
+        //   .then(function (response) {
+        //     console.log(response.data.response);
+        //   })
+        //   .catch(function (error) {
+        //     console.log("ERROR:", error);
+        //   });
+    }
+
+    changeWhere(whereValue) {
+        console.log("changeWhere", whereValue);
+        this.setState({whereValue})
     }
 
     render() {
         let color = (Platform.OS === 'ios') ? "#FFF" : "#FF2E2E"
 
+        const searchWhere = (whereValue) => {this.changeWhere(whereValue)};
+
         return (
             <View style={styles.container}>
-                <Input placeholder="Où ?"/>
+                <Input placeholder="Où ?" searchInput={searchWhere} />
                 <Input placeholder="Prix max"/>
                 <Input placeholder="Surface min"/>
                 <View style={styles.warrantyWrapper}>
