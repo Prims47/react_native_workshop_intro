@@ -20,6 +20,7 @@ export default class Input extends Component<{}> {
                 onChangeText={(value) => this.filter(value)}
                 value={this.state.value}
                 placeholder={this.state.placeholder}
+                underlineColorAndroid='rgba(0,0,0,0)'
             />
         );
     }
