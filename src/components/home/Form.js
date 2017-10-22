@@ -18,6 +18,7 @@ import { API_URL } from '../../Constant';
 export default class Form extends Component<{}> {
     constructor(props) {
         super(props);
+
         this.state = { whereValue: "", priceValue: "", surfMin: "" };
 
         this.search = this.search.bind(this);
@@ -28,7 +29,7 @@ export default class Form extends Component<{}> {
         let priceValue= this.state.priceValue;
         let surfMin = this.state.surfMin;
 
-        if (whereValue == "" && priceValue == "" && surfMin == "") {
+        if (whereValue == "" || priceValue == "" || surfMin == "") {
             Alert.alert(
                 'Error',
                 'Veuillez remplir tout les champs du formulaire',
@@ -41,11 +42,14 @@ export default class Form extends Component<{}> {
             return
         }
 
-        let url = `${API_URL}${whereValue}&price_max=${priceValue}&size_min=${surfMin}`
+        let url = `${API_URL}${whereValue}&price_max=${priceValue}&size_min=${surfMin}`;
         console.log("url: ", url);
+        let sucessList = this.props.success;
+
         axios.get(url)
           .then(function (response) {
-            console.log(response.data.response);
+              console.log(response.data.response);
+              sucessList(response.data.response.listings);
           })
           .catch(function (error) {
             console.log("ERROR:", error);

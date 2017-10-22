@@ -12,12 +12,20 @@ import {
   View
 } from 'react-native';
 
+import { StackNavigator } from 'react-navigation';
+
 import Home from './src/components/home/Home'
+import List from './src/components/list/List'
 
 export default class App extends Component<{}> {
   render() {
+    const Router = StackNavigator({
+        Home: { screen: Home},
+        List: { screen: List}
+    });
+
     return (
-      <Home />
+      <Router />
     );
   }
 }
