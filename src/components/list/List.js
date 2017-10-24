@@ -4,7 +4,10 @@ import {
   Text,
   View,
   Image,
+  FlatList,
 } from 'react-native';
+
+import Advert from './Advert';
 
 export default class List extends Component<{}> {
     static navigationOptions = {
@@ -21,10 +24,17 @@ export default class List extends Component<{}> {
         this.state = { listings: state.params.listings};
     }
 
+    _renderItem = ({item}) => (
+        <Advert item={item}/>
+    );
+
     render() {
         return (
             <View style={styles.container}>
-                <Text>LIST</Text>
+            <FlatList
+                data={this.state.listings}
+                renderItem={this._renderItem}
+            />
             </View>
         );
     }
