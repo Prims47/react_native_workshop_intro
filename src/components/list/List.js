@@ -7,7 +7,9 @@ import {
   FlatList,
 } from 'react-native';
 
-import Advert from './Advert';
+import { TabNavigator } from 'react-navigation';
+
+import ListScreen from './ListScreen';
 
 export default class List extends Component<{}> {
     static navigationOptions = {
@@ -29,13 +31,19 @@ export default class List extends Component<{}> {
     );
 
     render() {
+        const TabRouter = TabNavigator({
+            ListScreen: { screen: ListScreen }
+        }, {
+            initialRouteName: 'ListScreen',
+            animationEnabled: true,
+            tabBarOptions: {
+                activeTintColor: '#FF4242',
+                inactiveTintColor: '#8E8E93',
+            },
+        });
+
         return (
-            <View style={styles.container}>
-            <FlatList
-                data={this.state.listings}
-                renderItem={this._renderItem}
-            />
-            </View>
+            <TabRouter screenProps={this.state.listings}/>
         );
     }
 }
