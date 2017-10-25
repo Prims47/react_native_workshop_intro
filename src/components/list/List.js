@@ -42,6 +42,7 @@ export default class List extends Component<{}> {
                 activeTintColor: '#FF4242',
                 inactiveTintColor: '#8E8E93',
             },
+            lazy:  true,
         });
 
         return (

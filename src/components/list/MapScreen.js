@@ -11,7 +11,7 @@ export default class MapScreen extends Component<{}> {
     constructor(props) {
         super(props);
 
-        this.state = { listings: this.props.screenProps};
+        this.state = { listings: this.props.screenProps, latitude: null, longitude: null };
     }
 
     static navigationOptions = {
@@ -25,6 +25,20 @@ export default class MapScreen extends Component<{}> {
         ),
 
     };
+
+    componentDidMount() {
+        navigator.geolocation.getCurrentPosition(
+            (position) => {
+                console.log("position: ", position.coords);
+                this.setState({
+                    latitude: position.coords.latitude,
+                    longitude: position.coords.longitude,
+                });
+            },
+            (error) => console.log(error.message),
+            { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 },
+        );
+    }
 
     render() {
         return (
