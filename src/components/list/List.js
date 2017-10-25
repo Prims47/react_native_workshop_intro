@@ -42,7 +42,8 @@ export default class List extends Component<{}> {
                 activeTintColor: '#FF4242',
                 inactiveTintColor: '#8E8E93',
             },
-            tabBarPosition: "bottom"
+            tabBarPosition: "bottom",
+            lazy:  true,
         });
 
         return (
