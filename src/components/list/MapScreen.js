@@ -6,9 +6,12 @@ import {
   Image,
   FlatList,
   Dimensions,
+  ImageBackground,
+  TouchableOpacity,
 } from 'react-native';
 
 import MapView from 'react-native-maps';
+import Advert from './Advert';
 
 const { width, height } = Dimensions.get('window');
 
@@ -25,7 +28,11 @@ export default class MapScreen extends Component<{}> {
     constructor(props) {
         super(props);
 
-        this.state = { listings: this.props.screenProps, latitude: LATITUDE, longitude: LONGITUDE, userLocation: null};
+        this.state = { listings: this.props.screenProps, latitude: LATITUDE, longitude: LONGITUDE, userLocation: null,
+            currentAdvert: null, hasSelected: false
+        };
+
+        this._closeDetail = this._closeDetail.bind(this);
     }
 
     static navigationOptions = {
@@ -57,7 +64,11 @@ export default class MapScreen extends Component<{}> {
     }
 
     onPressMarker(e, index) {
-        this.setState({selectedMarkerIndex: index});
+        this.setState({selectedMarkerIndex: index, currentAdvert: this.state.listings[index], hasSelected: true});
+    }
+
+    _closeDetail() {
+        this.setState({selectedMarkerIndex: null, currentAdvert: null, hasSelected: false});
     }
 
     render() {
@@ -89,6 +100,24 @@ export default class MapScreen extends Component<{}> {
                     />
                   ))}
                 </MapView>
+                <View style={this.state.hasSelected ? styles.detailAdvert : styles.noDetailAdvert}>
+                    {this.state.currentAdvert != null ?
+                    <ImageBackground style={styles.backImage} source={{uri: this.state.currentAdvert.img_url}}>
+                        <TouchableOpacity onPress={this._closeDetail}>
+                            <Image source={require('./images/close.png')} style={styles.close}/>
+                        </TouchableOpacity>
+                        <View style={styles.detailWrapper}>
+                            <View style={styles.priceWrapper}>
+                                <Text style={styles.price}>{this.state.currentAdvert.price_formatted}</Text>
+                            </View>
+                            <View style={styles.infoWrapper}>
+                                <Text style={styles.size}>{this.state.currentAdvert.size} {this.state.currentAdvert.size_unit}</Text>
+                                <Text style={styles.room}>{this.state.currentAdvert.room_number} pièce(s)</Text>
+                            </View>
+                        </View>
+                    </ImageBackground>
+                    : null}
+                </View>
             </View>
         );
     }
@@ -104,5 +133,54 @@ const styles = StyleSheet.create({
         left: 0,
         right: 0,
         bottom: 0,
-    }
+    },
+    noDetailAdvert: {
+        display: "none",
+    },
+    detailAdvert: {
+        flex: 1,
+        position: 'absolute',
+        bottom: 0,
+        left: 0,
+        right: 0,
+        height: 183,
+    },
+    backImage: {
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+    },
+    detailWrapper: {
+        position: 'absolute',
+        bottom: 16,
+        right: 0,
+        left: 0,
+        height: 55,
+        backgroundColor: "#FF4242",
+    },
+    priceWrapper: {
+        flexDirection: "row",
+    },
+    price: {
+        color: "#FFF",
+        fontSize: 17,
+        fontWeight: "bold",
+    },
+    size: {
+        color: "#FFF",
+        fontSize: 12,
+    },
+    room : {
+        color: "#FFF",
+        fontSize: 12,
+    },
+    close: {
+        height: 23,
+        width: 23,
+        position: 'absolute',
+        top: 10,
+        right: 10,
+    },
 });
